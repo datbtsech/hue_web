@@ -11,6 +11,8 @@
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-analytics.js";
+    import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js";
+
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
   
@@ -30,6 +32,39 @@
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
+    const db = getDatabase(app);
+
+    function incrementVisitCount() {
+  const visitCountRef = ref(db, 'visitCount');  // Tạo tham chiếu đến 'visitCount'
+  get(visitCountRef).then((snapshot) => {
+    if (snapshot.exists()) {
+      const currentCount = snapshot.val();
+      set(visitCountRef, currentCount + 1);  // Cập nhật số lượng
+    } else {
+      set(visitCountRef, 1);
+    }
+  }).catch((error) => {
+    console.error("Error reading data: ", error);
+  });
+}
+
+function displayVisitCount() {
+  const visitCountRef = ref(db, 'visitCount');
+  get(visitCountRef).then((snapshot) => {
+    if (snapshot.exists()) {
+      const visitCount = snapshot.val();
+      document.getElementById('visit-count').textContent = `Số người truy cập: ${visitCount}`;
+    } else {
+      document.getElementById('visit-count').textContent = 'Số người truy cập: 0';
+    }
+  }).catch((error) => {
+    console.error("Error reading data: ", error);
+  });
+}
+
+incrementVisitCount();
+
+displayVisitCount();
 
   </script>
 <body>
@@ -77,7 +112,7 @@
             </div>
         </div>
     </header>
-
+    <div id="visit-count" style="color: black; margin-left: 40px; margin-top: 20px; color: red; font-size: 35;font-weight: 600;">Loading...</div>
     <section class="about-section">
         <div class="about-image">
             <img src="assets/images/places/background.png" alt="Ảnh đại diện">
@@ -186,7 +221,7 @@
             </div>
         </div>
     </section>
-    <script src="assets/js/script.js"></script>
+    <script src="assets/js/home_script.js"></script>
 </body>
 
 </html>
