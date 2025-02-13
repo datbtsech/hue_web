@@ -15,65 +15,63 @@
 
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
-  
+
     // Your web app's Firebase configuration
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     const firebaseConfig = {
-      apiKey: "AIzaSyDHPz0YIpKsKgFeq3JyO-kDR0Dy2XmajIQ",
-      authDomain: "huecity-28deb.firebaseapp.com",
-      databaseURL: "https://huecity-28deb-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "huecity-28deb",
-      storageBucket: "huecity-28deb.firebasestorage.app",
-      messagingSenderId: "1095102968727",
-      appId: "1:1095102968727:web:c4a7510b8b2b14d2974ad2",
-      measurementId: "G-H00WSH1823"
+        apiKey: "AIzaSyDHPz0YIpKsKgFeq3JyO-kDR0Dy2XmajIQ",
+        authDomain: "huecity-28deb.firebaseapp.com",
+        databaseURL: "https://huecity-28deb-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "huecity-28deb",
+        storageBucket: "huecity-28deb.firebasestorage.app",
+        messagingSenderId: "1095102968727",
+        appId: "1:1095102968727:web:c4a7510b8b2b14d2974ad2",
+        measurementId: "G-H00WSH1823"
     };
-  
+
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     const db = getDatabase(app);
 
     function incrementVisitCount() {
-  const visitCountRef = ref(db, 'visitCount');  // Tạo tham chiếu đến 'visitCount'
-  get(visitCountRef).then((snapshot) => {
-    if (snapshot.exists()) {
-      const currentCount = snapshot.val();
-      set(visitCountRef, currentCount + 1);  // Cập nhật số lượng
-    } else {
-      set(visitCountRef, 1);
+        const visitCountRef = ref(db, 'visitCount');  // Tạo tham chiếu đến 'visitCount'
+        get(visitCountRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                const currentCount = snapshot.val();
+                set(visitCountRef, currentCount + 1);  // Cập nhật số lượng
+            } else {
+                set(visitCountRef, 1);
+            }
+        }).catch((error) => {
+            console.error("Error reading data: ", error);
+        });
     }
-  }).catch((error) => {
-    console.error("Error reading data: ", error);
-  });
-}
 
-function displayVisitCount() {
-  const visitCountRef = ref(db, 'visitCount');
-  get(visitCountRef).then((snapshot) => {
-    if (snapshot.exists()) {
-      const visitCount = snapshot.val();
-      document.getElementById('visit-count').textContent = `Số người truy cập: ${visitCount}`;
-    } else {
-      document.getElementById('visit-count').textContent = 'Số người truy cập: 0';
+    function displayVisitCount() {
+        const visitCountRef = ref(db, 'visitCount');
+        get(visitCountRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                const visitCount = snapshot.val();
+                document.getElementById('visit-count').textContent = `Số người truy cập: ${visitCount}`;
+            } else {
+                document.getElementById('visit-count').textContent = 'Số người truy cập: 0';
+            }
+        }).catch((error) => {
+            console.error("Error reading data: ", error);
+        });
     }
-  }).catch((error) => {
-    console.error("Error reading data: ", error);
-  });
-}
+    incrementVisitCount();
+    displayVisitCount();
+</script>
 
-incrementVisitCount();
-
-displayVisitCount();
-
-  </script>
 <body>
-    
+
     <header class="hero" style="background: url('assets/images/background3.jpg') no-repeat center center/cover;">
         <nav>
             <div class="logo">Thừa Thiên Huế</div>
             <ul>
-                <li><a href="/index.html">Khám Phá</a></li>
+                <li><a href="index.html" style="color: green;">Giới thiệu</a></li>
                 <li><a href="#">Ẩm Thực</a></li>
                 <li><a href="#">Địa Danh</a></li>
                 <li><a href="#">Văn Hóa</a></li>
@@ -112,7 +110,9 @@ displayVisitCount();
             </div>
         </div>
     </header>
-    <div id="visit-count" style="color: black; margin-left: 40px; margin-top: 20px; color: red; font-size: 35;font-weight: 600;">Loading...</div>
+    <div id="visit-count"
+        style="color: black; margin-left: 40px; margin-top: 20px; color: red; font-size: 35;font-weight: 600;">
+        Loading...</div>
     <section class="about-section">
         <div class="about-image">
             <img src="assets/images/places/background.png" alt="Ảnh đại diện">
@@ -133,10 +133,12 @@ displayVisitCount();
     <section class="experience-section">
         <h2>Địa danh nổi tiếng</h2>
         <div class="experience-grid">
-            <div class="experience-card">
-                <img src="assets/images/places/dai_noi_hue.png" alt="Vòng quanh thành phố">
-                <div class="overlay">Đại nội Huế</div>
-            </div>
+            <a href="screens/place_articles/dai_noi.html">
+                <div class="experience-card">
+                    <img src="assets/images/places/dai_noi_hue.png" alt="Vòng quanh thành phố">
+                    <div class="overlay">Đại nội Huế</div>
+                </div>
+            </a>
             <div class="experience-card">
                 <img src="assets/images/places/lang_khai_dinh.png" alt="Vòng quanh thành phố">
                 <div class="overlay">Lăng Khải Định</div>
