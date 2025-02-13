@@ -7,9 +7,33 @@
     <title>Website Du Lịch</title>
     <link rel="stylesheet" href="assets/css/home_style.css">
 </head>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyDHPz0YIpKsKgFeq3JyO-kDR0Dy2XmajIQ",
+      authDomain: "huecity-28deb.firebaseapp.com",
+      databaseURL: "https://huecity-28deb-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "huecity-28deb",
+      storageBucket: "huecity-28deb.firebasestorage.app",
+      messagingSenderId: "1095102968727",
+      appId: "1:1095102968727:web:c4a7510b8b2b14d2974ad2",
+      measurementId: "G-H00WSH1823"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
 
+  </script>
 <body>
-<script>!function(s,u,b,i,z){var o,t,r,y;s[i]||(s._sbzaccid=z,s[i]=function(){s[i].q.push(arguments)},s[i].q=[],s[i]("setAccount",z),r=["widget.subiz.net","storage.googleapis"+(t=".com"),"app.sbz.workers.dev",i+"a"+(o=function(k,t){var n=t<=6?5:o(k,t-1)+o(k,t-3);return k!==t?n:n.toString(32)})(20,20)+t,i+"b"+o(30,30)+t,i+"c"+o(40,40)+t],(y=function(k){var t,n;s._subiz_init_2094850928430||r[k]&&(t=u.createElement(b),n=u.getElementsByTagName(b)[0],t.async=1,t.src="https://"+r[k]+"/sbz/app.js?accid="+z,n.parentNode.insertBefore(t,n),setTimeout(y,2e3,k+1))})(0))}(window,document,"script","subiz", "acsfxtbncemspbsizdxw")</script>
+    
     <header class="hero" style="background: url('assets/images/background3.jpg') no-repeat center center/cover;">
         <nav>
             <div class="logo">Thừa Thiên Huế</div>
